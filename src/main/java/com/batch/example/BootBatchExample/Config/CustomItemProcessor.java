@@ -1,11 +1,11 @@
 package com.batch.example.BootBatchExample.Config;
 
-import com.batch.example.BootBatchExample.model.Product;
+import com.batch.example.BootBatchExample.model.Products;
 import org.springframework.batch.item.ItemProcessor;
 
-public class CustomItemProcessor implements ItemProcessor<Product, Product> {
+public class CustomItemProcessor implements ItemProcessor<Products, Products> {
     @Override
-    public Product process(Product item) throws Exception {
+    public Products process(Products item) throws Exception {
         //transform ka logic yaha likhenge
         int discountedPercentage = Integer.parseInt(item.getDiscount());
         double originalPrice = Double.parseDouble(item.getPrice());
