@@ -13,5 +13,5 @@ public class Product {
  private String description;
  private String price;
  private String discount;
- //private String discounted_price;
+ private String discounted_price;
 }

@@ -7,6 +7,7 @@ import org.springframework.batch.core.job.builder.JobBuilder;
 import org.springframework.batch.core.repository.JobRepository;
 import org.springframework.batch.core.step.builder.StepBuilder;
 import org.springframework.batch.item.ItemProcessor;
+import org.springframework.batch.item.ItemReader;
 import org.springframework.batch.item.file.FlatFileItemReader;
 import org.springframework.batch.item.file.builder.FlatFileItemReaderBuilder;
 import org.springframework.context.annotation.Bean;
@@ -26,11 +27,12 @@ public class BatchConfig {
                 .build();
     }
     @Bean
-    public Step steps(JobRepository jobRepository, DataSourceTransactionManager transactionManager){
+    public Step steps(JobRepository jobRepository, DataSourceTransactionManager transactionManager,
+                      ItemReader<Product> reader, ItemProcessor<Product, Product> processor){
         return new StepBuilder("step", jobRepository).
                 chunk(5, transactionManager)
-                .reader(reader())
-                .processor()
+                .reader(reader)
+                .processor(processor)
                 .writer()
                 .build();
     }
