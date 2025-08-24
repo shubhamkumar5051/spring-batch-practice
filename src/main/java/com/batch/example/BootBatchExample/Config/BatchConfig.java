@@ -50,19 +50,18 @@ public class BatchConfig {
                 .targetType(Products.class)
                 .build();
     }
-
+    @Bean
     public ItemProcessor<Products, Products> itemProcessor(){
          return new CustomItemProcessor();
     }
 
-    @Bean
-    public ItemWriter<Products> itemWriter(DataSource  dataSource){
-        return new JdbcBatchItemWriterBuilder<Products>()
-                .sql("insert into products(product_id, title, description,price discount, discounted_price) " +
-                        "values (:product_id, :title, :description, :price, :discount, :discounted_price)")
-                .dataSource(dataSource)
-                .beanMapped()
-                .build();
-    }
-
+   @Bean
+public ItemWriter<Products> itemWriter(DataSource dataSource) {
+    return new JdbcBatchItemWriterBuilder<Products>()
+            .sql("insert into products(product_id, title, description, price, discount, discounted_price) " +
+                 "values (:product_id, :title, :description, :price, :discount, :discounted_price)")
+            .dataSource(dataSource)
+            .beanMapped()
+            .build();
+}
 }

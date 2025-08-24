@@ -8,7 +8,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class Products {
- private int product_id;
+ private String product_id;
  private String title;
  private String description;
  private String price;
